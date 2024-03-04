@@ -6,8 +6,16 @@ This is base image for Pocketbase
 
 ### Build Image
 
+- Using Powershell
+
 ```bash
-docker build -t pocketbase:latest .
+docker build --no-cache -t zed378/pocketbase:latest --build-arg PB_VERSION=$((Invoke-WebRequest -Uri "https://api.github.com/repos/pocketbase/pocketbase/releases/latest" | ConvertFrom-Json).tag_name.Substring(1)) .
+```
+
+- Using linux CLI
+
+```bash
+docker build --no-cache -t zed378/pocketbase:latest --build-arg PB_VERSION=$(wget -qO- https://api.github.com/repos/pocketbase/pocketbase/releases/latest | grep -o '"tag_name": "v.*"' | cut -d'"' -f4 | sed 's/^v//') .
 ```
 
 ### Deploy

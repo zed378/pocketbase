@@ -36,5 +36,5 @@ docker run -d \
 ### Access
 
 ```bash
-http://localhost:8090
+http://localhost:8090/_/
 ```
